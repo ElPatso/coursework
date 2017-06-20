@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+    <!-- Base Definition -->
+    <definition name="base-definition"
+                template="/WEB-INF/views/tiles/layouts/template.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/views/tiles/template/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/tiles/template/menu.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/views/tiles/template/footer.jsp" />
+    </definition>
+
+    <!-- Home Page -->
+    <definition name="home" extends="base-definition">
+        <put-attribute name="title" value="Welcome" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />
+    </definition>
+    <!-- registration -->
+    <definition name="registration" extends="base-definition">
+        <put-attribute name="title" value="Welcome" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/registration.jsp" />
+    </definition>
+    <!-- login -->
+    <definition name="login" extends="base-definition">
+        <put-attribute name="title" value="Welcome" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/login.jsp" />
+    </definition>
+    <!-- lot -->
+    <definition name="lot" extends="base-definition">
+        <put-attribute name="title" value="Welcome" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/lot.jsp" />
+    </definition>
+    <!-- cart-->
+    <definition name="cart" extends="base-definition">
+        <put-attribute name="title" value="Welcome" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/cart.jsp" />
+    </definition>
+    <!-- search-->
+    <definition name="search" extends="base-definition">
+        <put-attribute name="title" value="Welcome" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/search.jsp" />
+    </definition>
+    <!-- createLot-->
+    <definition name="createLot" extends="base-definition">
+        <put-attribute name="title" value="Welcome" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/createLot.jsp" />
+    </definition>
+</tiles-definitions>
