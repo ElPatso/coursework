@@ -2,60 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="691828a6-2991-4bba-b2fe-87920a951a8d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/controller/Admintest.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/model/Search.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/ua/lemekh/controller/Admintest.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/ua/lemekh/model/Search.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ua/lemekh/controller/Admintest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ua/lemekh/model/Search.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/createLot.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/search.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiles/layouts/library.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/createLot.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/search.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/tiles/layouts/library.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/controller/RegistrationController$1.class" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/controller/RegistrationController$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/controller/RegistrationController.class" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/controller/RegistrationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/controller/test.class" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/controller/test.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/dao/ProductDao.class" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/dao/ProductDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/dao/ProductDaoImpl.class" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/dao/ProductDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/service/ProductService.class" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/service/ProductService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/service/ProductServiceImpl.class" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/classes/ua/lemekh/service/ProductServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/lemekh/controller/RegistrationController$1.class" afterPath="$PROJECT_DIR$/target/classes/ua/lemekh/controller/RegistrationController$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/lemekh/controller/RegistrationController.class" afterPath="$PROJECT_DIR$/target/classes/ua/lemekh/controller/RegistrationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/lemekh/controller/test.class" afterPath="$PROJECT_DIR$/target/classes/ua/lemekh/controller/test.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/lemekh/dao/ProductDao.class" afterPath="$PROJECT_DIR$/target/classes/ua/lemekh/dao/ProductDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/lemekh/dao/ProductDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/ua/lemekh/dao/ProductDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/lemekh/service/ProductService.class" afterPath="$PROJECT_DIR$/target/classes/ua/lemekh/service/ProductService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/lemekh/service/ProductServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/ua/lemekh/service/ProductServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/lemekh/controller/RegistrationController.java" afterPath="$PROJECT_DIR$/src/main/java/ua/lemekh/controller/RegistrationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/lemekh/controller/test.java" afterPath="$PROJECT_DIR$/src/main/java/ua/lemekh/controller/test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/lemekh/dao/ProductDao.java" afterPath="$PROJECT_DIR$/src/main/java/ua/lemekh/dao/ProductDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/lemekh/dao/ProductDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/ua/lemekh/dao/ProductDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/lemekh/service/ProductService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/lemekh/service/ProductService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/lemekh/service/ProductServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/ua/lemekh/service/ProductServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/appconfig-security.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/appconfig-security.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tiles.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tiles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/cart.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/cart.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/home.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/home.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/lot.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/lot.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/registration.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/registration.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiles/layouts/template.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiles/layouts/template.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiles/template/header.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/tiles/template/header.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/style.css" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/appconfig-security.xml" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/appconfig-security.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/tiles.xml" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/tiles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/cart.jsp" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/cart.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/home.jsp" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/home.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/login.jsp" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/lot.jsp" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/lot.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/registration.jsp" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/pages/registration.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/tiles/layouts/template.jsp" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/tiles/layouts/template.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/tiles/template/header.jsp" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/WEB-INF/views/tiles/template/header.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/resources/css/style.css" afterPath="$PROJECT_DIR$/target/InternetShop-1.0-SNAPSHOT/resources/css/style.css" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -105,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/lot.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="15" selection-end-column="6" />
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="15" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -1289,12 +1236,12 @@
       <workItem from="1497702151711" duration="19442000" />
       <workItem from="1497774796160" duration="43148000" />
       <workItem from="1497868014141" duration="22011000" />
-      <workItem from="1497949268929" duration="15841000" />
+      <workItem from="1497949268929" duration="16461000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182643000" />
+    <option name="totallyTimeSpent" value="183263000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1306,8 +1253,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1791,7 +1737,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/lot.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="15" selection-end-column="6" />
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="15" selection-end-column="6" />
           <folding />
         </state>
       </provider>
