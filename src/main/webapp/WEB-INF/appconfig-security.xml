@@ -11,6 +11,7 @@
         <intercept-url pattern="/" access="permitAll"/>
         <intercept-url pattern="/createlot" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/editusers" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/editcategory" access="hasRole('ROLE_ADMIN')"/>
 
         <csrf disabled="true"/>
 
