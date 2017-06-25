@@ -8,9 +8,7 @@
                 <div class="thumbnail">
                     <a href="${pageContext.request.contextPath}/lot/${product.id}">
 
-                        <c:if test="${not empty product.image }">
                             <img class="image" src="${contextPath}/resources/img/1.jpg">
-                        </c:if>
 
                     </a>
                     <div class="caption">
@@ -23,6 +21,6 @@
         </c:forEach>
     </div>
 
- <tag:paginate max="15" offset="${offset}" count="${count}"
-                  uri="${contextPath}/" next="&raquo;" previous="&laquo;" />
+ <tag:paginate  offset="${offset}" count="${count}"
+               uri="${contextPath}/" next="&raquo;" previous="&laquo;" />
 </div>

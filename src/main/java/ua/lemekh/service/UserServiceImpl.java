@@ -11,6 +11,7 @@ import ua.lemekh.model.User;
 import org.springframework.transaction.annotation.Transactional;
 import javax.xml.ws.ServiceMode;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -45,7 +46,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public void updateUser(User user){
-        userDao.updateUser(user);
+    public User updateUser(User user){
+        return userDao.updateUser(user);
     }
+
+    @Transactional
+    @Override
+    public List<User> getUsers() {
+
+        return userDao.getUsers();
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(int id){
+        this.userDao.deleteUser(id);
+    }
+
+    @Override
+    @Transactional
+     public User getUserById(int id){
+        return this.userDao.getUserById(id);
+     }
 }

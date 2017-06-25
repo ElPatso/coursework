@@ -15,13 +15,13 @@ public interface ProductDao {
 
     Products getProductById(int id);
 
-    Comments addComment(Comments comments);
-
     Products addProduct(Products products);
 
-    Comments findComment(int id);
-
     List<Products> getProductListBySearch(String search);
+
+    List<Products> getProductsByCategory(String category, Integer offset, Integer maxResult);
+
+    Long CountForCategory(String category);
 
 }
 

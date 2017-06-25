@@ -1,17 +1,14 @@
 
 $(document).ready(function() {
-    var header = $("meta[name='_csrf_header']").attr("content");
-    var token = $("meta[name='_csrf']").attr("content");
     var deleteLink = $("a:contains('Delete')");
     $(deleteLink).click(function(event) {
 
         $.ajax({
             url: $(event.target).attr("href"),
             type: "DELETE",
-            beforeSend: function(xhr){
-                xhr.setRequestHeader(header, token);
-            },
+
             success: function(data) {
+
                 var rowToDelete = $(event.target).closest("tr");
 
                 rowToDelete.remove();
@@ -23,8 +20,8 @@ $(document).ready(function() {
         event.preventDefault();
     });
     $('#btnSubmitComment').submit(function(event) {
-
-            var name = $('#name').val();
+        var mySrc = "http://" + $(location).attr('host') +""
+        var name = $('#name').val();
             var comment = $('#comment').val();
             var json = {"name" : name, "comment" : comment };
 
@@ -33,18 +30,17 @@ $(document).ready(function() {
                 data: JSON.stringify(json),
                 type: "POST",
                 contentType: 'application/json',
-                beforeSend: function(xhr){
-                    xhr.setRequestHeader(header, token);
-                },
+
                 success: function(data) {
                     var respContent = "";
                     respContent+="<tr>";
 
-                    respContent+="<td>"+"<b>"+data.name+"</b> Залишив відгук :"+"</td>";
+                    respContent+="<td rowspan='2' width='65'>"+"<img src='/resources/img/user_img.png' width='64' height='64'>"+"</td>";
+                    respContent+="<th colspan='2' >"+"<b>"+data.name+"</b> Залишив відгук :"+"</th>";
                     respContent+="</tr>";
                     respContent+="<tr>";
 
-                    respContent+="<td> <p>"+data.comment+"</td>";
+                    respContent+="<th> <p>"+data.comment+"</th>";
                     respContent+="</tr>";
                     $('#table_grid').last().append(respContent);
                     $('#comment').val('');
@@ -57,18 +53,69 @@ $(document).ready(function() {
 
     });
 function addtoCart(id) {
-    var header = $("meta[name='_csrf_header']").attr("content");
-    var token = $("meta[name='_csrf']").attr("content");
 
     $.ajax({
         url : "http://" + $(location).attr('host') + "/lot/"+id,
         type: 'POST',
-
-        beforeSend: function(xhr){
-            xhr.setRequestHeader(header, token);
-        },
         success: function (data) {
             $('#addToCart').hide();
+
+        },
+        error: function(ts) { alert(ts.responseText) }
+    });
+}
+function uploadImage() {
+    var isJpg = function(name) {
+        return name.match(/jpg$/i)
+    };
+
+    var isPng = function(name) {
+        return name.match(/png$/i)
+    };
+    var imgContainer = $('#imgContainer');
+    var $input = $("#uploadimage")
+    var filename = $.trim($input.val());
+
+    if (!(isJpg(filename) || isPng(filename))) {
+        alert('Please browse a JPG/PNG file to upload ...');
+        return;
+    };
+    var fd = new FormData();
+    fd.append('img', $input.prop('files')[0]);
+    $.ajax({
+        url: "http://" + $(location).attr('host') + "/updateImage",
+        type: "POST",
+        data: fd,
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false
+    }).done(function(data) {
+        imgContainer.html('');
+        var img = '<img src="data:' + data.contenttype + ';base64,'
+            + data.base64 + '"/>';
+
+        imgContainer.append(img);
+    });
+}
+function checkparam() {
+    var $input = $("#textsearch").val();
+    if ($input.length !=0){
+        $("#submit").removeAttr('disabled');
+    } else {
+        $("#submit").attr('disabled', 'disabled');
+    }
+}
+function changeStatus(id,enabled) {
+    var json = {"enabled" : enabled}
+    $.ajax({
+        url : "http://" + $(location).attr('host') + "/editusers/update/"+id,
+        type: 'PUT',
+        contentType: 'application/json',
+        data : JSON.stringify(json),
+        success: function (data) {
+            var respContent ='';
+            respContent+="<a href='#' onclick='changeStatus("+data.id+","+data.enabled+")'>"+data.enabled+"</a>";
+            $("#user_"+id).html(respContent);
 
         },
         error: function(ts) { alert(ts.responseText) }

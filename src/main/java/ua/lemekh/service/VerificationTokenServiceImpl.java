@@ -13,7 +13,7 @@ import ua.lemekh.model.VerificationToken;
 @Service
 public class VerificationTokenServiceImpl implements VerificationTokenService {
     @Autowired
-    VerificationDao verificationDao;
+    private VerificationDao verificationDao;
     @Transactional
     @Override
     public void createVerificationToken(User user, String token) {

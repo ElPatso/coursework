@@ -9,9 +9,10 @@
 
     <http auto-config="true">
         <intercept-url pattern="/" access="permitAll"/>
-        <intercept-url pattern="/сreateLot" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/editUsers" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/createlot" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/editusers" access="hasRole('ROLE_ADMIN')"/>
 
+        <csrf disabled="true"/>
 
         <form-login login-page="/login" default-target-url="/" authentication-failure-url="/login?error"
                     username-parameter="username" password-parameter="password"/>

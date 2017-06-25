@@ -36,25 +36,27 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional
     @Override
-    public Comments addComment(Comments comments){
-        return   productDao.addComment(comments);
-    }
-
-    @Transactional
-    @Override
     public Products addProduct(Products products) {
 
         return productDao.addProduct(products);
     }
-    @Transactional
-    @Override
-    public Comments findComment(int id) {
-        return productDao.findComment(id);
-    }
+
     @Transactional
     @Override
     public List<Products> getProductListBySearch(String search){
        return this.productDao.getProductListBySearch(search);
+    }
+
+    @Transactional
+    @Override
+    public List<Products> getProductsByCategory(String category, Integer offset, Integer maxResult) {
+        return this.productDao.getProductsByCategory(category, offset, maxResult);
+    }
+
+    @Transactional
+    @Override
+    public Long CountForCategory(String category) {
+        return this.productDao.CountForCategory(category);
     }
 
 

@@ -4,21 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ua.lemekh.model.Comments;
-import ua.lemekh.model.Products;
-import ua.lemekh.model.Search;
-import ua.lemekh.model.User;
+import ua.lemekh.model.*;
 import ua.lemekh.service.CartService;
+import ua.lemekh.service.CategoryService;
+import ua.lemekh.service.CommentService;
 import ua.lemekh.service.ProductService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
  * Created by Ostap on 16.06.2017.
  */
 @Controller
-public class test {
+public class ProductController {
     @Autowired
     Search search;
 
@@ -28,14 +29,19 @@ public class test {
     @Autowired
     private CartService cartService;
 
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private CommentService commentService;
+
     @RequestMapping(value = "/" , method = RequestMethod.GET)
     public String main(Model model, Integer offset, Integer maxResults){
         model.addAttribute("products", productService.getProductList(offset, maxResults));
         model.addAttribute("count", productService.count());
         model.addAttribute("offset", offset);
-        model.addAttribute("userForm", new User());
         model.addAttribute("search", search);
-
+        model.addAttribute("show", categoryService.list());
         return "home";
     }
 
@@ -44,21 +50,22 @@ public class test {
         model.addAttribute("product", productService.getProductById(id));
         model.addAttribute("execute", cartService.isExecute(id));
         model.addAttribute("search", search);
+        model.addAttribute("show", categoryService.list());
         return "lot";
     }
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @RequestMapping(value="/lot/{id}/addComment", method=RequestMethod.POST)
     @ResponseBody
-    public Comments createSmartphone(@PathVariable Integer id, @RequestBody Comments comments) {
-
+    public Comments createComment(@PathVariable Integer id, @Valid @RequestBody Comments comments) {
         comments.setProducts(productService.getProductById(id));
-        return productService.addComment(comments);
+        return commentService.addComment(comments);
     }
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = "cart", method = RequestMethod.GET)
     public String cart(Model model){
         model.addAttribute("search", search);
         model.addAttribute("cart", cartService.getCartList());
+        model.addAttribute("show", categoryService.list());
         return "cart";
     }
 
@@ -66,7 +73,7 @@ public class test {
     @RequestMapping(value = "/lot/{id}", method = RequestMethod.POST)
     @ResponseBody
     public String addtoCart(@PathVariable Integer id){
-        System.out.println("dosmth");
+
         cartService.addToCart(id);
         return "OK";
     }
@@ -74,7 +81,7 @@ public class test {
     @RequestMapping(value = "cart/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public Products deleteFromCart(@PathVariable Integer id) {
-        System.out.println("dosmth");
+
         return cartService.deleteFromcart(id);
     }
 
@@ -82,8 +89,20 @@ public class test {
     @RequestMapping(value = "search", method = RequestMethod.POST)
     public String searchPost(Model model, @ModelAttribute("search") Search search) {
 
+        model.addAttribute("show", categoryService.list());
         model.addAttribute("search", search);
         model.addAttribute("products", productService.getProductListBySearch(search.getSearchRow()));
         return "search";
+    }
+
+
+    @RequestMapping(value = "category", method = RequestMethod.GET)
+    public String categoryTest(@RequestParam("name") String name, Model model, Integer offset, Integer maxResults) {
+        model.addAttribute("products", productService.getProductsByCategory(name,offset, maxResults));
+        model.addAttribute("count", productService.CountForCategory(name));
+        model.addAttribute("offset", offset);
+        model.addAttribute("search", search);
+        model.addAttribute("show", categoryService.list());
+        return "category";
     }
 }

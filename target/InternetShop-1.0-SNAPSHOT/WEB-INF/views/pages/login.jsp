@@ -9,8 +9,10 @@
         <div class="imgcontainer">
             <img src="${contextPath}/resources/img/img_avatar2.png" alt="Avatar" class="avatar">
         </div>
-        ${error}
+
         <div class="form">
+        <span>${error}</span><br>
+
             <label><b>Username</b></label>
             <input name="username" type="text" placeholder="Username"
                    autofocus="true" required/>

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 /**
  * Created by Ostap on 13.06.2017.
@@ -40,7 +41,26 @@ public class UserDaoImpl implements UserDao{
         return user;
     }
 
-    public void updateUser(User user){
-        entityManager.merge(user);
+    public User updateUser(User user){
+       return entityManager.merge(user);
+    }
+
+    @Override
+    public List<User> getUsers() {
+        return entityManager.createQuery("select u From User u").getResultList();
+
+    }
+
+    @Override
+    public void deleteUser(int id){
+        User user = entityManager.find(User.class, id);
+        if (user != null){
+            entityManager.remove(user);
+        }
+    }
+
+    @Override
+    public User getUserById(int id){
+        return entityManager.find(User.class, id);
     }
 }

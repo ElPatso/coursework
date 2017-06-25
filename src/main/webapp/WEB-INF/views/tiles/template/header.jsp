@@ -4,12 +4,12 @@
 <div id="header">
     <a href="${contextPath}/"><img src="${contextPath}/resources/img/shop.png" class="logoimg">
     </a>
-    <h1>Sombra's Internet shop</h1>
+    <h1>Internet shop</h1>
     <div></div>
     <div class="searchDiv">
         <form:form action="${contextPath}/search" method="post" class="search" modelAttribute="search">
-            <form:input path="searchRow" type="search" name="" placeholder="пошук..." class="input" />
-            <input type="submit" name="" value="" class="submit" />
+            <form:input path="searchRow" type="search" name="" id="textsearch" onkeyup="checkparam()" placeholder="Search..." class="input" />
+            <input type="submit" disabled="disabled" name="" value="" class="submit" id="submit"/>
         </form:form>
     </div>
     <form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -28,12 +28,11 @@
         </security:authorize>
 
         <security:authorize access="hasRole('ROLE_ADMIN')">
-            <a href=""><button >Edit Users</button></a>
-            <a href="${contextPath}/createLot"><button >Create lot</button></a>
+            <a href="${contextPath}/editusers"><button >Edit Users</button></a>
+            <a href="${contextPath}/editcategory"><button >Edit Category</button></a>
+            <a href="${contextPath}/createlot"><button >Create lot</button></a>
             <a onclick="document.forms['logoutForm'].submit()"><button>Logout</button></a>
         </security:authorize>
-
-
     </div>
 
 </div>

@@ -16,13 +16,14 @@
 </div>
 <div class="clear"></div>
 <p><center>Відгуки:</center></p>
-<table id="table_grid">
+<table id="table_grid" class="commentTable">
     <c:forEach var="comment" items="${product.commentsSet}">
     <tr>
-        <td><b>${comment.name}</b> Залишив відгук :</td>
+        <td rowspan="2" width="65"><img src="${pageContext.request.contextPath}/resources/img/user_img.png" width="64" height="64" ></td>
+        <th colspan="2">${comment.name} Залишив відгук :</th>
     </tr>
     <tr>
-        <td><p>${comment.comment}</td>
+      <th> <p>${comment.comment}</th>
     </tr>
 
     </c:forEach>
@@ -36,7 +37,7 @@
             <input  type="hidden" id="name" value="${pageContext.request.userPrincipal.name}"/>
             <textarea  id="comment" cols="45" rows="5"></textarea><br>
 
-            <input type="submit" value="Create" o/>
+            <input type="submit" value="Create" />
 
         </form>
 </div>

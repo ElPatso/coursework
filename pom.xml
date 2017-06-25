@@ -13,8 +13,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -31,6 +31,8 @@
             <mysql-connector.version>5.1.36</mysql-connector.version>
             <commons-dbcp.version>1.4</commons-dbcp.version>
             <jackson.version>2.6.3</jackson.version>
+            <commons.file.upload.version>1.3.1</commons.file.upload.version>
+            <commons.io.version>2.5</commons.io.version>
         </properties>
 
     <dependencies>
@@ -168,5 +170,20 @@
         <artifactId>jackson-annotations</artifactId>
         <version>${jackson.version}</version>
     </dependency>
+
+        <!-- File upload dependencies -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons.file.upload.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+
+
     </dependencies>
 </project>

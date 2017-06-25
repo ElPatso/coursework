@@ -2,6 +2,7 @@ package ua.lemekh.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -26,6 +27,7 @@ public class Comments {
     private String name;
 
     @JsonProperty("comment")
+    @NotEmpty
     @Column(name = "comment")
     private String comment;
 

@@ -1,5 +1,7 @@
 package ua.lemekh.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -12,17 +14,23 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty("id")
     private int id;
 
     @Column(name = "username")
+    @JsonProperty("username")
     private String username;
 
     @Column(name = "password")
+    @JsonIgnore
     private String password;
+
     @Column(name = "enabled")
+    @JsonProperty("enabled")
     private boolean enabled;
 
     @Column(name ="email")
+    @JsonProperty("email")
     private String email;
 
     public boolean isEnabled() {
@@ -34,8 +42,10 @@ public class User {
     }
 
     @Transient
+    @JsonIgnore
     private String confirmPassword;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

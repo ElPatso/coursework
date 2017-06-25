@@ -1,7 +1,9 @@
 <%@include file="../tiles/layouts/library.jsp"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <div id="page" class="b3radius">
-
+<c:if test="${empty products}">
+    No matches
+</c:if>
     <div class="row">
         <c:forEach var="product" items="${products}">
             <div class="col-sm-6 col-md-3">

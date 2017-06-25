@@ -1,1 +1,1 @@
-<div id="footer"> <center>FOOTER</center></div>
+<div id="footer"> <center>Created by Ostap Lemekh @</center></div>

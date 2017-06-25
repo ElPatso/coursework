@@ -2,6 +2,8 @@ package ua.lemekh.dao;
 
 import ua.lemekh.model.User;
 
+import java.util.List;
+
 /**
  * Created by Ostap on 13.06.2017.
  */
@@ -12,5 +14,12 @@ public interface UserDao {
 
     User findByEmail(String email);
 
-    void updateUser(User user);
+    User updateUser(User user);
+
+    List<User> getUsers();
+
+    void deleteUser(int id);
+
+    User getUserById(int id);
+
 }

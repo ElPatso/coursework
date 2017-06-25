@@ -18,7 +18,7 @@ import java.util.List;
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class CartServiceImpl implements CartService {
     @Autowired
-    ProductDao productDao;
+    private ProductDao productDao;
 
     private List<Products> listCart = new ArrayList<Products>();
 
@@ -32,6 +32,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public void addToCart(int id) {
         listCart.add(productDao.getProductById(id));
+
     }
 
     @Override

@@ -1,6 +1,7 @@
 <%@include file="../tiles/layouts/library.jsp"%>
 
 <div id="page" class="b3radius">
+    <img src="${contextPath}/resources/img/shopping-cart-md.png" width="100">
     <c:choose>
         <c:when test="${empty cart}">
             Корзина пуста

@@ -16,7 +16,7 @@ import javax.persistence.Query;
 @Repository
 public class VerificationDaoImpl implements VerificationDao {
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Override
     public void createVerificationToken(VerificationToken verificationToken) {

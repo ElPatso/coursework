@@ -1,6 +1,7 @@
 package ua.lemekh.model;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,8 +20,6 @@ public class Products {
     private String name;
     @Column(name = "category")
     private String category;
-    @Column(name = "image")
-    private String image;
     @Column(name = "price")
     private double price;
     @Column(name = "description")
@@ -30,6 +29,29 @@ public class Products {
     private List<Comments> commentsSet;
     public int getId() {
         return id;
+    }
+
+    @Transient
+    private MultipartFile image;
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", image=" + image +
+                '}';
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 
     public List<Comments> getCommentsSet() {
@@ -58,14 +80,6 @@ public class Products {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public double getPrice() {

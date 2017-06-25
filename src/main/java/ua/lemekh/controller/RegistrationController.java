@@ -13,6 +13,7 @@ import ua.lemekh.mailEvent.OnRegistrationCompleteEvent;
 import ua.lemekh.model.Search;
 import ua.lemekh.model.User;
 import ua.lemekh.model.VerificationToken;
+import ua.lemekh.service.CategoryService;
 import ua.lemekh.service.UserService;
 import ua.lemekh.service.VerificationTokenService;
 import ua.lemekh.validation.UserValidator;
@@ -26,23 +27,25 @@ import java.util.Calendar;
 @Controller
 public class RegistrationController {
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
-    Search search;
-
-    @Autowired
-    UserValidator userValidator;
+    private Search search;
 
     @Autowired
-    ApplicationEventPublisher applicationEventPublisher;
+    private UserValidator userValidator;
 
     @Autowired
-    VerificationTokenService verificationTokenService;
+    private ApplicationEventPublisher applicationEventPublisher;
 
+    @Autowired
+    private VerificationTokenService verificationTokenService;
 
+    @Autowired
+    CategoryService categoryService;
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") final User userForm, BindingResult bindingResult, Model model, final HttpServletRequest request) {
-
+        model.addAttribute("search", search);
+        model.addAttribute("show", categoryService.list());
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -63,6 +66,7 @@ public class RegistrationController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error) {
         model.addAttribute("search", search);
+        model.addAttribute("show", categoryService.list());
         if (error != null) {
             model.addAttribute("error", "Username or password is incorrect.");
         }
@@ -79,6 +83,7 @@ public class RegistrationController {
     public String confirmRegistration
             ( Model model, @RequestParam("token") String token) {
         model.addAttribute("search", search);
+        model.addAttribute("show", categoryService.list());
         VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
         if (verificationToken == null) {
             return "redirect:/" ;
