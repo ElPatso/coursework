@@ -5,12 +5,17 @@
     <img src="${pageContext.request.contextPath}/resources/img/1.jpg">
     <security:authorize access="hasRole('ROLE_USER')">
         <c:if test="${!execute}">
-    <p><button id="addToCart" class="button7" onclick="addtoCart(${product.id})">Добавити в корзину</button></p>
+    <p><button id="addToCart" class="button7" onclick="addtoCart(${product.id})">Add to cart</button></p>
         </c:if>
+    </security:authorize>
+    <security:authorize access="hasRole('ROLE_ADMIN')">
+            <button >Change lot</button></p>
+            <button >Delete lot</button></p>
     </security:authorize>
 </div>
 <div class="body">
     <P><h2>${product.name}</h2></P>
+    <p>${product.category}</p>
     <p>${product.price}</p>
     <p>${product.description}</p>
 </div>
@@ -37,7 +42,7 @@
             <input  type="hidden" id="name" value="${pageContext.request.userPrincipal.name}"/>
             <textarea  id="comment" cols="45" rows="5"></textarea><br>
 
-            <input type="submit" value="Create" />
+            <input type="submit" value="Add comment" />
 
         </form>
 </div>

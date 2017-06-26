@@ -299,6 +299,7 @@ table td {
     padding: 1%;
 }
 .simple-little-table {
+    width: 96%;
     font-family:Arial, Helvetica, sans-serif;
     color:#666;
     font-size:12px;
@@ -482,7 +483,8 @@ input[type="search"] {
 .fileUpload {
     position: relative;
     overflow: hidden;
-    margin: 10px;
+    margin: 0.5%;
+
 }
 .fileUpload input.upload {
     position: absolute;
@@ -503,16 +505,22 @@ input[type="search"] {
 
 }
 .categories {
-    width: 40%;
+    margin-left: 5%;
+    width: 35%;
     float: left;
 }
 .addcategory {
-    width: 40%;
+    width: 25%;
     float: left;
+}
+.addcategory button {
+    width: 70px;
+    padding: 1%;
 }
 nav {
     padding-top: 0.7%;
     padding-left: 5%;
+    z-index: 1000;
 }
 
 nav ul ul {
@@ -528,7 +536,7 @@ a.disablet {
 }
 
 nav ul {
-
+    z-index: 100;
     padding: 0 10px;
     border-radius: 10px;
     list-style: none;
@@ -543,6 +551,7 @@ nav ul li {
     float: left;
 }
 nav ul li:hover {
+
     background: #195f04;
     background: linear-gradient(top, #1a4b04 0%, #195f04 10%);
     background: -moz-linear-gradient(top, #1a4b04 0%, #195f04 10%);
@@ -578,4 +587,15 @@ nav ul ul li a:hover {
 
 nav ul ul ul {
     position: absolute; left: 101%; top:0;
+}
+h2 {
+    margin-left: 7%;
+}
+.leftimg {
+    float:left;
+    margin: 7px 7px 7px 0;
+}
+.rightimg  {
+    float: left;
+    margin: 1%;
 }

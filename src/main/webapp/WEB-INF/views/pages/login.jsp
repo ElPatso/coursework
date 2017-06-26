@@ -20,8 +20,6 @@
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
 
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
             <button type="submit">Login</button>
 
         </div>

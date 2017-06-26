@@ -28,4 +28,22 @@ public class CategoryImp implements CategoryDao {
         entityManager.flush();
         return category;
     }
+
+    @Override
+    public void deleteCategory(int id) {
+        Category category = entityManager.find(Category.class, id);
+        if (category != null) {
+            entityManager.remove(category);
+        }
+    }
+
+    @Override
+    public Category getCategoryById(int id) {
+        return entityManager.find(Category.class, id);
+    }
+
+    @Override
+    public List<String> getCategories() {
+        return entityManager.createQuery("select c.name from Category c where c.parentCategory is not null ").getResultList();
+    }
 }

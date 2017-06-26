@@ -1,6 +1,7 @@
 <%@ include file="../tiles/layouts/library.jsp"%>
 
 <div id="page">
+    <h2>Users</h2>
     <table class="table table-bordered">
         <thead>
         <tr>

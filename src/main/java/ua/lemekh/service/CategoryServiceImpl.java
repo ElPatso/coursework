@@ -24,4 +24,22 @@ public class CategoryServiceImpl implements CategoryService {
     public Category createCategory(Category category) {
         return this.categoryDao.createCategory(category);
     }
+
+    @Transactional
+    @Override
+    public void deleteCategory(int id) {
+        this.categoryDao.deleteCategory(id);
+    }
+
+    @Transactional
+    @Override
+    public Category getCategoryById(int id) {
+        return this.categoryDao.getCategoryById(id);
+    }
+
+    @Transactional
+    @Override
+    public List<String> getCategories() {
+        return this.categoryDao.getCategories();
+    }
 }

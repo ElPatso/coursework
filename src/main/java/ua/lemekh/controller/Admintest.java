@@ -11,6 +11,7 @@ import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import ua.lemekh.model.Category;
 import ua.lemekh.model.Products;
 import ua.lemekh.model.Search;
 import ua.lemekh.model.User;
@@ -26,6 +27,8 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by Ostap on 20.06.2017.
@@ -81,6 +84,7 @@ public class Admintest {
         model.addAttribute("search", search);
         model.addAttribute("lot", new Products());
         model.addAttribute("show", categoryService.list());
+        model.addAttribute("categories", categoryService.getCategories());
         return "createlot";
     }
 
@@ -88,7 +92,6 @@ public class Admintest {
     public String createLot(@ModelAttribute("lot") Products products, HttpServletRequest request) {
         productService.addProduct(products);
         MultipartFile productsImage = products.getImage();
-        System.out.println("++++++++" + productsImage.getName());
         String rootDirectory = request.getSession().getServletContext().getRealPath("/resources/img/");
         path = Paths.get(rootDirectory +
                 +products.getId() + ".png");
@@ -125,5 +128,27 @@ public class Admintest {
         model.addAttribute("categories", categoryService.list());
         model.addAttribute("show", categoryService.list());
         return "editcategory";
+    }
+
+    @RequestMapping(value = "/editcategory", method = RequestMethod.POST)
+    @ResponseBody
+    public String createCategory(@RequestBody Category category) {
+        Category newCategory = new Category();
+        newCategory.setName(category.getName());
+        if (category.getId() == 0){
+        categoryService.createCategory(newCategory);
+        }
+        else {
+            newCategory.setParentCategory(categoryService.getCategoryById(category.getId()));
+            categoryService.createCategory(newCategory);
+        }
+        return "Category successful created";
+    }
+
+    @RequestMapping(value = "/editcategory/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public String deleteCategory(@PathVariable("id") Integer id) {
+        categoryService.deleteCategory(id);
+        return "Category successful deleted";
     }
 }

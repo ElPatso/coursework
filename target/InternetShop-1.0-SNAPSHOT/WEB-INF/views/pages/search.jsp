@@ -9,11 +9,7 @@
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
                     <a href="${pageContext.request.contextPath}/lot/${product.id}">
-
-                        <c:if test="${not empty product.image }">
-                            <img class="image" src="${contextPath}/resources/img/1.jpg">
-                        </c:if>
-
+                            <img class="image" src="/resources/img/${product.id}.png">
                     </a>
                     <div class="caption">
                         <a href = "${pageContext.request.contextPath}/lot/${product.id}"><h3>${product.name}</h3></a>

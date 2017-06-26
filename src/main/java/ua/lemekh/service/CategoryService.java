@@ -11,4 +11,10 @@ public interface CategoryService {
     List<Category> list();
 
     Category createCategory(Category category);
+
+    void deleteCategory(int id);
+
+    Category getCategoryById(int id);
+
+    List<String> getCategories();
 }

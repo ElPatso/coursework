@@ -12,9 +12,6 @@
             <input type="submit" disabled="disabled" name="" value="" class="submit" id="submit"/>
         </form:form>
     </div>
-    <form id="logoutForm" method="POST" action="${contextPath}/logout">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    </form>
     <div class="buttonsign">
         <security:authorize access="isAnonymous()">
         <a href="${contextPath}/login"><button >Sign In</button></a>
@@ -24,14 +21,14 @@
         <security:authorize access="hasRole('ROLE_USER')">
             <a href=""><button >Profile</button></a>
             <a href="${contextPath}/cart"><button >Cart</button></a>
-            <a onclick="document.forms['logoutForm'].submit()"><button>Logout</button></a>
+            <a href="${contextPath}/logout"><button>Logout</button></a>
         </security:authorize>
 
         <security:authorize access="hasRole('ROLE_ADMIN')">
             <a href="${contextPath}/editusers"><button >Edit Users</button></a>
             <a href="${contextPath}/editcategory"><button >Edit Category</button></a>
             <a href="${contextPath}/createlot"><button >Create lot</button></a>
-            <a onclick="document.forms['logoutForm'].submit()"><button>Logout</button></a>
+            <a href="${contextPath}/logout"><button>Logout</button></a>
         </security:authorize>
     </div>
 

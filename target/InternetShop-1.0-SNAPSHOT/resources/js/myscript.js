@@ -2,21 +2,15 @@
 $(document).ready(function() {
     var deleteLink = $("a:contains('Delete')");
     $(deleteLink).click(function(event) {
-
         $.ajax({
             url: $(event.target).attr("href"),
             type: "DELETE",
-
             success: function(data) {
-
                 var rowToDelete = $(event.target).closest("tr");
-
                 rowToDelete.remove();
-
             },
             error: function(ts) { alert(ts.responseText) }
         });
-
         event.preventDefault();
     });
     $('#btnSubmitComment').submit(function(event) {
