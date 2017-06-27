@@ -2,7 +2,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <div id="page" class="b3radius">
 <c:if test="${empty products}">
-    No matches
+    <h2 class="rightimg">No matches</h2><img class="leftimg" src="${contextPath}/resources/img/loop.png" width="5%">
 </c:if>
     <div class="row">
         <c:forEach var="product" items="${products}">

@@ -23,4 +23,7 @@ public interface ProductService {
 
     Long CountForCategory(String category);
 
+    void updateproduct(Products products);
+
+    void deleteProduct(int id);
 }

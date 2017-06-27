@@ -1,5 +1,6 @@
 package ua.lemekh.model;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,7 +26,7 @@ public class Products {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "products", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "products", fetch = FetchType.EAGER)
     private List<Comments> commentsSet;
     public int getId() {
         return id;

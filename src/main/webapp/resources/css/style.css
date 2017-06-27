@@ -103,9 +103,7 @@ body {
     font-family: "Monotype Corsiva" Cursive;
 
 }
-a{
-    text-decoration: none;
-}
+
 #menu{
     width: 100%;
     height: 50px;
@@ -501,9 +499,6 @@ input[type="search"] {
     margin-left: 10%;
     width: 80%;
 }
-.commentTable th {
-
-}
 .categories {
     margin-left: 5%;
     width: 35%;
@@ -599,3 +594,18 @@ h2 {
     float: left;
     margin: 1%;
 }
+.admbuttons {
+    text-align: center;
+    margin-top: 5%;
+}
+.admbuttons a{
+    margin: 2%;
+    margin-top: 10%;
+    color: #fff;
+    background: rgb(212,75,56);
+    padding: .7em 1.5em;
+    outline: none;
+}
+
+.admbuttons a:hover { background: rgb(232,95,76); }
+.admbuttons a:active { background: rgb(152,15,0); }

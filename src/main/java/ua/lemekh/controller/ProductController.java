@@ -20,8 +20,6 @@ import java.util.List;
  */
 @Controller
 public class ProductController {
-    @Autowired
-    Search search;
 
     @Autowired
     private ProductService productService;
@@ -40,7 +38,6 @@ public class ProductController {
         model.addAttribute("products", productService.getProductList(offset, maxResults));
         model.addAttribute("count", productService.count());
         model.addAttribute("offset", offset);
-        model.addAttribute("search", search);
         model.addAttribute("show", categoryService.list());
         return "home";
     }
@@ -49,7 +46,6 @@ public class ProductController {
     public String lot(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("product", productService.getProductById(id));
         model.addAttribute("execute", cartService.isExecute(id));
-        model.addAttribute("search", search);
         model.addAttribute("show", categoryService.list());
         return "lot";
     }
@@ -63,14 +59,13 @@ public class ProductController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = "cart", method = RequestMethod.GET)
     public String cart(Model model){
-        model.addAttribute("search", search);
         model.addAttribute("cart", cartService.getCartList());
         model.addAttribute("show", categoryService.list());
         return "cart";
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(value = "/lot/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/lotAddtocart/{id}", method = RequestMethod.POST)
     @ResponseBody
     public String addtoCart(@PathVariable Integer id){
 
@@ -87,11 +82,10 @@ public class ProductController {
 
 
     @RequestMapping(value = "search", method = RequestMethod.POST)
-    public String searchPost(Model model, @ModelAttribute("search") Search search) {
-
+    public String searchPost(Model model, @RequestParam("searchRow") String string) {
+        System.out.println("search row + "+string);
         model.addAttribute("show", categoryService.list());
-        model.addAttribute("search", search);
-        model.addAttribute("products", productService.getProductListBySearch(search.getSearchRow()));
+        model.addAttribute("products", productService.getProductListBySearch(string));
         return "search";
     }
 
@@ -101,7 +95,6 @@ public class ProductController {
         model.addAttribute("products", productService.getProductsByCategory(name,offset, maxResults));
         model.addAttribute("count", productService.CountForCategory(name));
         model.addAttribute("offset", offset);
-        model.addAttribute("search", search);
         model.addAttribute("show", categoryService.list());
         return "category";
     }

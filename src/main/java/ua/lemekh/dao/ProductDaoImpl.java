@@ -68,5 +68,18 @@ public class ProductDaoImpl implements ProductDao {
        return (Long) entityManager.createQuery("select count (p.id)from Products p where p.category like ?1").setParameter(1, category).getSingleResult();
     }
 
+    @Override
+    public void updateProduct(Products products) {
+        entityManager.merge(products);
+    }
+
+    @Override
+    public void deleteProduct(int id) {
+        Products products = entityManager.find(Products.class, id);
+        if (products != null){
+            entityManager.remove(products);
+        }
+    }
+
 
 }

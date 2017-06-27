@@ -9,8 +9,10 @@
         </c:if>
     </security:authorize>
     <security:authorize access="hasRole('ROLE_ADMIN')">
-            <button >Change lot</button></p>
-            <button >Delete lot</button></p>
+    <div class="admbuttons">
+        <a class="knopka" href="${pageContext.request.contextPath}/editlot/${product.id}">Change lot</a>
+        <a class="knopka" href="${pageContext.request.contextPath}/remove/${product.id}">Remove lot</a>
+    </div>
     </security:authorize>
 </div>
 <div class="body">
@@ -42,7 +44,7 @@
             <input  type="hidden" id="name" value="${pageContext.request.userPrincipal.name}"/>
             <textarea  id="comment" cols="45" rows="5"></textarea><br>
 
-            <input type="submit" value="Add comment" />
+            <input type="submit" value="Add comment" class="button7"/>
 
         </form>
 </div>

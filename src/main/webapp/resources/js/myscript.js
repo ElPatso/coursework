@@ -49,7 +49,7 @@ $(document).ready(function() {
 function addtoCart(id) {
 
     $.ajax({
-        url : "http://" + $(location).attr('host') + "/lot/"+id,
+        url : "http://" + $(location).attr('host') + "/lotAddtocart/"+id,
         type: 'POST',
         success: function (data) {
             $('#addToCart').hide();

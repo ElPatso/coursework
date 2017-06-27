@@ -59,5 +59,17 @@ public class ProductServiceImpl implements ProductService {
         return this.productDao.CountForCategory(category);
     }
 
+    @Transactional
+    @Override
+    public void updateproduct(Products products) {
+        this.productDao.updateProduct(products);
+    }
+
+    @Transactional
+    @Override
+    public void deleteProduct(int id) {
+        this.productDao.deleteProduct(id);
+    }
+
 
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.lemekh.mailEvent.OnRegistrationCompleteEvent;
-import ua.lemekh.model.Search;
 import ua.lemekh.model.User;
 import ua.lemekh.model.VerificationToken;
 import ua.lemekh.service.CategoryService;
@@ -28,8 +27,6 @@ import java.util.Calendar;
 public class RegistrationController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private Search search;
 
     @Autowired
     private UserValidator userValidator;
@@ -44,7 +41,6 @@ public class RegistrationController {
     CategoryService categoryService;
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") final User userForm, BindingResult bindingResult, Model model, final HttpServletRequest request) {
-        model.addAttribute("search", search);
         model.addAttribute("show", categoryService.list());
         userValidator.validate(userForm, bindingResult);
 
@@ -65,7 +61,6 @@ public class RegistrationController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error) {
-        model.addAttribute("search", search);
         model.addAttribute("show", categoryService.list());
         if (error != null) {
             model.addAttribute("error", "Username or password is incorrect.");
@@ -74,7 +69,6 @@ public class RegistrationController {
     }
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
-        model.addAttribute("search", search);
         model.addAttribute("userForm", new User());
         return "registration";
     }
@@ -82,7 +76,6 @@ public class RegistrationController {
     @RequestMapping(value = "/regitrationConfirm", method = RequestMethod.GET)
     public String confirmRegistration
             ( Model model, @RequestParam("token") String token) {
-        model.addAttribute("search", search);
         model.addAttribute("show", categoryService.list());
         VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
         if (verificationToken == null) {

@@ -18,7 +18,7 @@
                     <span>Upload</span>
                 <form:input path="image" type="file" onchange="uploadImage()" id="uploadimage" class="upload"/>
                 </div>
-                <input type="submit" value="Submit" class="btn btn-success" onclick="setimage()"/>
+                <input type="submit" value="Submit" class="btn btn-success"/>
             </form:form>
         </div>
     <div class="clear"></div>

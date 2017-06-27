@@ -23,5 +23,9 @@ public interface ProductDao {
 
     Long CountForCategory(String category);
 
+    void updateProduct(Products products);
+
+    void deleteProduct(int id);
+
 }
 

@@ -7,10 +7,10 @@
     <h1>Internet shop</h1>
     <div></div>
     <div class="searchDiv">
-        <form:form action="${contextPath}/search" method="post" class="search" modelAttribute="search">
-            <form:input path="searchRow" type="search" name="" id="textsearch" onkeyup="checkparam()" placeholder="Search..." class="input" />
+        <form action="${contextPath}/search" method="post" class="search" >
+            <input path="searchRow"  type="search" name="searchRow" id="textsearch" onkeyup="checkparam()" placeholder="Search..." class="input" />
             <input type="submit" disabled="disabled" name="" value="" class="submit" id="submit"/>
-        </form:form>
+        </form>
     </div>
     <div class="buttonsign">
         <security:authorize access="isAnonymous()">
