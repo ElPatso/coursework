@@ -52,7 +52,6 @@ public class RegistrationController {
             @Override
             public void run() {
                 applicationEventPublisher.publishEvent(new OnRegistrationCompleteEvent(userForm, request.getLocale(), getAppUrl(request)));
-
             }
         });
         thread.start();

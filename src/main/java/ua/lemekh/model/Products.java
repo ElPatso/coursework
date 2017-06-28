@@ -1,10 +1,11 @@
 package ua.lemekh.model;
 
-import org.hibernate.annotations.Cascade;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
@@ -17,16 +18,20 @@ public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @NotEmpty
     @Column(name = "name")
     private String name;
+    @NotEmpty
     @Column(name = "category")
     private String category;
+    @NotNull
     @Column(name = "price")
     private double price;
+    @NotEmpty
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "products", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "products", fetch = FetchType.EAGER)
     private List<Comments> commentsSet;
     public int getId() {
         return id;

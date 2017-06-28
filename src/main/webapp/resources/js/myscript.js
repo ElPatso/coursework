@@ -30,7 +30,7 @@ $(document).ready(function() {
                     respContent+="<tr>";
 
                     respContent+="<td rowspan='2' width='65'>"+"<img src='/resources/img/user_img.png' width='64' height='64'>"+"</td>";
-                    respContent+="<th colspan='2' >"+"<b>"+data.name+"</b> Залишив відгук :"+"</th>";
+                    respContent+="<th colspan='2' >"+"<b>"+data.name+"</b> left a review  :"+"</th>";
                     respContent+="</tr>";
                     respContent+="<tr>";
 
@@ -110,6 +110,47 @@ function changeStatus(id,enabled) {
             var respContent ='';
             respContent+="<a href='#' onclick='changeStatus("+data.id+","+data.enabled+")'>"+data.enabled+"</a>";
             $("#user_"+id).html(respContent);
+
+        },
+        error: function(ts) { alert(ts.responseText) }
+    });
+}
+$(document).ready(function() {
+    $('#category').submit(function(event) {
+        var id = $("#id").val();
+        var name = $("#categoryname").val();
+        var json  = {"id" : id, "name" : name}
+
+        $.ajax({
+            url: $('#category').attr( "action"),
+            contentType: 'application/json',
+            type: 'POST',
+            data : JSON.stringify(json),
+            success: function (data) {
+                $("#result").css({'background-color':'#00ff00', 'width':'20%'});
+
+                $("#result").html(data);
+
+            },
+            error: function(ts) { alert(ts.responseText) }
+        });
+        event.preventDefault();
+    });
+});
+function addToInput(id) {
+    $("#id").val(id);
+
+    $("#categorysubmit").show();
+
+}
+function deleteCategory(id) {
+    $.ajax({
+        url : "http://" + $(location).attr('host') + "/editcategory/"+id,
+        type: 'DELETE',
+        success: function (data) {
+            $("#result").css({'background-color':'#ff0000', 'width':'20%'});
+
+            $("#result").html(data);
 
         },
         error: function(ts) { alert(ts.responseText) }

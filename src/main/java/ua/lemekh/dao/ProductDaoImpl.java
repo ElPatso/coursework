@@ -71,6 +71,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public void updateProduct(Products products) {
         entityManager.merge(products);
+        entityManager.flush();
     }
 
     @Override

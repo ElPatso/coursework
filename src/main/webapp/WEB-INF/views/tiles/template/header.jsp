@@ -19,7 +19,6 @@
         </security:authorize>
 
         <security:authorize access="hasRole('ROLE_USER')">
-            <a href=""><button >Profile</button></a>
             <a href="${contextPath}/cart"><button >Cart</button></a>
             <a href="${contextPath}/logout"><button>Logout</button></a>
         </security:authorize>

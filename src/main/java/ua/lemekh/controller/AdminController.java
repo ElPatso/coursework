@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Base64Utils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ua.lemekh.model.Category;
@@ -16,6 +17,7 @@ import ua.lemekh.service.ProductService;
 import ua.lemekh.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -77,19 +79,12 @@ public class AdminController {
     }
 
     @RequestMapping(value = "createlot", method = RequestMethod.POST)
-    public String createLot(@ModelAttribute("lot") Products products, HttpServletRequest request) {
-        productService.addProduct(products);
-        MultipartFile productsImage = products.getImage();
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/resources/img/");
-        path = Paths.get(rootDirectory +
-                +products.getId() + ".png");
-        if (productsImage != null && !productsImage.isEmpty()) {
-            try {
-                productsImage.transferTo(new File(path.toString()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public String createLot(@Valid @ModelAttribute("lot") Products products, BindingResult bindingResult, HttpServletRequest request ) {
+        if (bindingResult.hasErrors()){
+            return "redirect:/createlot";
         }
+        productService.addProduct(products);
+        uploadImage(request, products);
         return "redirect:/";
     }
 
@@ -119,7 +114,7 @@ public class AdminController {
 
     @RequestMapping(value = "/editcategory", method = RequestMethod.POST)
     @ResponseBody
-    public String createCategory(@RequestBody Category category) {
+    public String createCategory(@Valid @RequestBody Category category) {
         Category newCategory = new Category();
         newCategory.setName(category.getName());
         if (category.getId() == 0){
@@ -146,17 +141,32 @@ public class AdminController {
         model.addAttribute("categories", categoryService.getCategories());
         return "editlot";
     }
+
     @RequestMapping(value = "editlot/{id}", method = RequestMethod.POST)
-    public String editLot(@ModelAttribute("lot") Products products){
+    public String editLot(@Valid @ModelAttribute("lot") Products products, HttpServletRequest request) {
         productService.updateproduct(products);
+        uploadImage(request,products);
         return "redirect:/lot/{id}";
     }
 
     @RequestMapping(value = "remove/{id}")
     public String deleteProduct(@PathVariable("id") Integer id){
-        System.out.println("===================================");
         productService.deleteProduct(id);
         return "redirect:/";
+    }
+
+    private void uploadImage(HttpServletRequest request, Products products){
+        MultipartFile productsImage = products.getImage();
+        String rootDirectory = request.getSession().getServletContext().getRealPath("/resources/img/");
+        path = Paths.get(rootDirectory +
+                +products.getId() + ".png");
+        if (productsImage != null && !productsImage.isEmpty()) {
+            try {
+                productsImage.transferTo(new File(path.toString()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

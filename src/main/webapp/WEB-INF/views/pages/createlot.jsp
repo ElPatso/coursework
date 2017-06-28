@@ -3,7 +3,7 @@
 <div id="page">
     <h2>Create lot</h2>
     <div id="imgContainer" class="imagecreatelot">
-        <img src="${pageContext.request.contextPath}/resources/img/img_avatar2.png">
+        <img src="${pageContext.request.contextPath}/resources/img/800x600.png">
     </div>
         <div class="contentcreatelot">
             <form:form method="post" enctype="multipart/form-data" modelAttribute="lot">

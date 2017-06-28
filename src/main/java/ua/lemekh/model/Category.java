@@ -1,5 +1,7 @@
 package ua.lemekh.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class Category {
     @Column(name = "id")
     private int id;
     @Column(name = "name")
+    @NotEmpty
     private String name;
     @ManyToOne
     @JoinColumn(name = "parent_id")

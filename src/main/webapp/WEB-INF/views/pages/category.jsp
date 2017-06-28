@@ -7,7 +7,7 @@
                 <div class="thumbnail">
                     <a href="${pageContext.request.contextPath}/lot/${product.id}">
 
-                        <img class="image" src="${pageContext.request.contextPath}/resources/img/1.jpg">
+                        <img class="image" src="/resources/img/${product.id}.png">
 
                     </a>
                     <div class="caption">

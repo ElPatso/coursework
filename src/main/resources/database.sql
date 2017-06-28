@@ -38,7 +38,6 @@ CREATE table products(
   id INT                not null auto_increment primary key,
   name VARCHAR(50)     NOT NULL ,
   category VARCHAR(50) NOT NULL ,
-  image VARCHAR(50)    NOT NULL ,
   price DOUBLE         NOT NULL ,
   description TEXT     NOT NULL
 
