@@ -36,7 +36,7 @@ $(document).ready(function() {
 
                     respContent+="<th> <p>"+data.comment+"</th>";
                     respContent+="</tr>";
-                    $('#table_grid').last().append(respContent);
+                    $('#table_grid').append(respContent);
                     $('#comment').val('');
                 },
                 error: function(ts) { alert(ts.responseText) }
