@@ -4,15 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import ua.lemekh.Util.StringUtil;
 import ua.lemekh.mailEvent.OnRegistrationCompleteEvent;
+import ua.lemekh.model.RoleEnum;
 import ua.lemekh.model.User;
 import ua.lemekh.model.VerificationToken;
-import ua.lemekh.service.CategoryService;
+import ua.lemekh.service.GroupService;
 import ua.lemekh.service.UserService;
 import ua.lemekh.service.VerificationTokenService;
 import ua.lemekh.validation.UserValidator;
@@ -25,6 +25,7 @@ import java.util.Calendar;
  */
 @Controller
 public class RegistrationController {
+    public static final String ADMIN = "adminadmin";
     @Autowired
     private UserService userService;
 
@@ -38,10 +39,18 @@ public class RegistrationController {
     private VerificationTokenService verificationTokenService;
 
     @Autowired
-    CategoryService categoryService;
+    private GroupService groupService;
+
+    @Autowired
+    GroupService categoryService;
+
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") final User userForm, BindingResult bindingResult, Model model, final HttpServletRequest request) {
         model.addAttribute("show", categoryService.list());
+        if (StringUtils.isEmpty(userForm.getPassword())){
+            userForm.setPassword(ADMIN);
+            userForm.setConfirmPassword(ADMIN);
+        }
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -66,30 +75,25 @@ public class RegistrationController {
         }
         return "login";
     }
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
+        model.addAttribute("groups", groupService.list());
         return "registration";
+    }
+
+    @RequestMapping(value = "/registerLecturer/{id}", method = RequestMethod.GET)
+    public String registration(Model model, @PathVariable("id") Integer id) {
+        model.addAttribute("userForm", userService.getUserById(id));
+        return "registerlecturer";
     }
 
     @RequestMapping(value = "/regitrationConfirm", method = RequestMethod.GET)
     public String confirmRegistration
-            ( Model model, @RequestParam("token") String token) {
+            (Model model, @RequestParam("token") String token) {
         model.addAttribute("show", categoryService.list());
-        VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
-        if (verificationToken == null) {
-            return "redirect:/" ;
-        }
-
-        User user = verificationToken.getUser();
-
-        Calendar cal = Calendar.getInstance();
-        if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
-            return "redirect:/" ;
-        }
-        user.setEnabled(true);
-        userService.updateUser(user);
-        return "redirect:/login";
+        return userService.confirmVerification(token);
     }
 
     private String getAppUrl(HttpServletRequest request) {

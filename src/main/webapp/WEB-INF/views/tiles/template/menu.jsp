@@ -1,7 +1,7 @@
 <%@include file="../layouts/library.jsp"%>
 <div id="menu">
 <nav>
-        <ul >
+        <%--<ul >
             <c:forEach var="menu" items="${show}">
                 <li>
                     <a href="#" class="disablet">${menu.name}</a>
@@ -27,7 +27,7 @@
                     </c:if>
                 </li>
             </c:forEach>
-        </ul>
+        </ul>--%>
 </nav>
 
 </div>

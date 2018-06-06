@@ -13,7 +13,7 @@ public class VerificationToken {
     private static final int EXPIRATION = 60 * 24;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     public int getId() {

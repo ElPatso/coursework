@@ -1,6 +1,7 @@
 package ua.lemekh.dao;
 
 import org.springframework.stereotype.Repository;
+import ua.lemekh.model.Group;
 import ua.lemekh.model.User;
 
 import javax.persistence.EntityManager;
@@ -62,5 +63,12 @@ public class UserDaoImpl implements UserDao{
     @Override
     public User getUserById(int id){
         return entityManager.find(User.class, id);
+    }
+
+    @Override
+    public List<User> getUsersByGroup(List<Group> group) {
+        return entityManager.createQuery("SELECT u FROM User u WHERE u.group  IN :group AND u.enabled=TRUE",User.class)
+                .setParameter("group",group)
+                .getResultList();
     }
 }

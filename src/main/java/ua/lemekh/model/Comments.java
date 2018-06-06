@@ -13,14 +13,14 @@ import javax.persistence.*;
 @Table(name = "comments")
 public class Comments {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
     private int id;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
     @JsonIgnore
-    private Products products;
+    private Publication products;
 
     @JsonProperty("name")
     @Column(name = "name")
@@ -39,11 +39,11 @@ public class Comments {
         this.id = id;
     }
 
-    public Products getProducts() {
+    public Publication getProducts() {
         return products;
     }
 
-    public void setProducts(Products products) {
+    public void setProducts(Publication products) {
         this.products = products;
     }
 

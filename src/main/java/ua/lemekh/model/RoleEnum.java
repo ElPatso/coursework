@@ -1,8 +1,9 @@
 package ua.lemekh.model;
 
 public enum RoleEnum {
-    ADMIN("ADMIN"),
-    STUDENT("STUDENT");
+    ROLE_ADMIN("ROLE_ADMIN"),
+    ROLE_LECTURER("ROLE_LECTURER"),
+    ROLE_STUDENT("ROLE_STUDENT");
 
     private String role;
     RoleEnum(String s) {
@@ -13,7 +14,4 @@ public enum RoleEnum {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

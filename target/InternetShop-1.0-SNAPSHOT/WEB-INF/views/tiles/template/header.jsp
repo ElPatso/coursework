@@ -2,9 +2,9 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <div id="header">
-    <a href="${contextPath}/"><img src="${contextPath}/resources/img/shop.png" class="logoimg">
+    <a href="${contextPath}/"><img src="${contextPath}/resources/img/logo.png" class="logoimg">
     </a>
-    <h1>Internet shop</h1>
+    <%--<h1>CAD Library</h1>--%>
     <div></div>
     <div class="searchDiv">
         <form action="${contextPath}/search" method="post" class="search" >
@@ -18,15 +18,15 @@
         <a href="${contextPath}/registration"><button>Sign Up</button></a>
         </security:authorize>
 
-        <security:authorize access="hasRole('ROLE_USER')">
+        <security:authorize access="hasAnyRole('ROLE_STUDENT','ROLE_LECTURER')">
             <a href="${contextPath}/cart"><button >Cart</button></a>
             <a href="${contextPath}/logout"><button>Logout</button></a>
         </security:authorize>
 
         <security:authorize access="hasRole('ROLE_ADMIN')">
             <a href="${contextPath}/editusers"><button >Edit Users</button></a>
-            <a href="${contextPath}/editcategory"><button >Edit Category</button></a>
-            <a href="${contextPath}/createlot"><button >Create lot</button></a>
+            <a href="${contextPath}/editcategory"><button >Create group</button></a>
+            <a href="${contextPath}/createlot"><button >Make public.</button></a>
             <a href="${contextPath}/logout"><button>Logout</button></a>
         </security:authorize>
     </div>

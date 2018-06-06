@@ -1,7 +1,13 @@
-<%@ include file="../tiles/layouts/library.jsp"%>
+<%@ include file="../tiles/layouts/library.jsp" %>
 
 <div id="page">
     <h2>Users</h2>
+    <div class="buttonsign">
+        <a href="${contextPath}/registration">
+            <button>New user</button>
+        </a>
+    </div>
+    </br>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -13,11 +19,11 @@
         </thead>
         <c:forEach var="user" items="${users}">
             <tbody>
-            <tr >
+            <tr>
                 <td>${user.username}</td>
                 <td>${user.email}</td>
                 <td id="user_${user.id}">
-                     <a href="#" onclick="changeStatus(${user.id},${user.enabled})">${user.enabled}</a>
+                    <a href="#" onclick="changeStatus(${user.id},${user.enabled})">${user.enabled}</a>
 
                 </td>
                 <td>

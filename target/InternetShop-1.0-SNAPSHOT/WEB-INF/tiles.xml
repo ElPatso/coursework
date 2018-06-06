@@ -22,6 +22,10 @@
         <put-attribute name="title" value="Welcome" />
         <put-attribute name="body" value="/WEB-INF/views/pages/registration.jsp" />
     </definition>
+    <definition name="registerlecturer" extends="base-definition">
+        <put-attribute name="title" value="Welcome" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/registerlecturer.jsp" />
+    </definition>
     <!-- login -->
     <definition name="login" extends="base-definition">
         <put-attribute name="title" value="Welcome" />
@@ -42,7 +46,7 @@
         <put-attribute name="title" value="Welcome" />
         <put-attribute name="body" value="/WEB-INF/views/pages/search.jsp" />
     </definition>
-    <!-- createLot-->
+    <!-- createPublication-->
     <definition name="createlot" extends="base-definition">
         <put-attribute name="title" value="Welcome" />
         <put-attribute name="body" value="/WEB-INF/views/pages/createlot.jsp" />

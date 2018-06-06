@@ -1,5 +1,6 @@
 package ua.lemekh.dao;
 
+import ua.lemekh.model.Group;
 import ua.lemekh.model.User;
 
 import java.util.List;
@@ -22,4 +23,5 @@ public interface UserDao {
 
     User getUserById(int id);
 
+    List<User> getUsersByGroup(List<Group> group);
 }

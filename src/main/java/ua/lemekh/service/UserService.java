@@ -1,5 +1,6 @@
 package ua.lemekh.service;
 
+import ua.lemekh.model.Group;
 import ua.lemekh.model.User;
 
 import java.util.List;
@@ -22,4 +23,9 @@ public interface UserService {
 
     User getUserById(int id);
 
+    User getCurrentUser();
+
+    List<User> getUsersByGroup(List<Group> group);
+
+    String confirmVerification(String token);
 }

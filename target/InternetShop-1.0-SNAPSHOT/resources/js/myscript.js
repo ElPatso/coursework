@@ -58,6 +58,9 @@ function addtoCart(id) {
         error: function(ts) { alert(ts.responseText) }
     });
 }
+function rate() {
+    document.getElementById("rateButton").click();
+}
 function uploadImage() {
     var isJpg = function(name) {
         return name.match(/jpg$/i)
@@ -127,9 +130,7 @@ $(document).ready(function() {
             type: 'POST',
             data : JSON.stringify(json),
             success: function (data) {
-                $("#result").css({'background-color':'#00ff00', 'width':'20%'});
-
-                $("#result").html(data);
+                document.location.reload();
 
             },
             error: function(ts) { alert(ts.responseText) }
@@ -143,6 +144,16 @@ function addToInput(id) {
     $("#categorysubmit").show();
 
 }
+
+function showGroup() {
+    document.getElementById("selectGroup").style.display="block";
+
+}
+function hideGroup() {
+    document.getElementById("selectGroup").style.display="none";
+
+}
+
 function deleteCategory(id) {
     $.ajax({
         url : "http://" + $(location).attr('host') + "/editcategory/"+id,

@@ -9,44 +9,43 @@ import org.springframework.util.Base64Utils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ua.lemekh.model.Category;
-import ua.lemekh.model.Products;
+import ua.lemekh.dao.RoleDao;
+import ua.lemekh.dto.NewPublicationDTO;
+import ua.lemekh.model.Group;
+import ua.lemekh.model.Publication;
 import ua.lemekh.model.User;
-import ua.lemekh.service.CategoryService;
-import ua.lemekh.service.ProductService;
+import ua.lemekh.service.GroupService;
+import ua.lemekh.service.PublicationService;
 import ua.lemekh.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 
 /**
  * Created by Ostap on 20.06.2017.
  */
 @Controller
-@PreAuthorize("hasRole('ROLE_ADMIN')")
+@PreAuthorize("hasAnyRole('ROLE_LECTURER','ROLE_ADMIN')")
 public class AdminController {
 
     @Autowired
-    private ProductService productService;
+    private PublicationService publicationService;
 
     @Autowired
     private UserService userService;
 
     @Autowired
-    private CategoryService categoryService;
+    private GroupService groupService;
 
     private Path path;
 
     @RequestMapping(value = "editusers", method = RequestMethod.GET)
     public String listUsers(Model model) {
-        model.addAttribute("users",userService.getUsers());
-        model.addAttribute("show", categoryService.list());
+        model.addAttribute("users", userService.getUsers());
+        model.addAttribute("show", groupService.list());
         return "listUsers";
     }
 
@@ -71,20 +70,15 @@ public class AdminController {
     }
 
     @RequestMapping(value = "createlot", method = RequestMethod.GET)
-    public String createLot(Model model) {
-        model.addAttribute("lot", new Products());
-        model.addAttribute("show", categoryService.list());
-        model.addAttribute("categories", categoryService.getCategories());
+    public String createPublication(Model model) {
+        model.addAttribute("groups", groupService.getCategories());
+        model.addAttribute("publication", new NewPublicationDTO());
         return "createlot";
     }
 
     @RequestMapping(value = "createlot", method = RequestMethod.POST)
-    public String createLot(@Valid @ModelAttribute("lot") Products products, BindingResult bindingResult, HttpServletRequest request ) {
-        if (bindingResult.hasErrors()){
-            return "redirect:/createlot";
-        }
-        productService.addProduct(products);
-        uploadImage(request, products);
+    public String createPublication(@Valid @ModelAttribute("lot") NewPublicationDTO newPublicationDTO, BindingResult bindingResult, HttpServletRequest request) {
+        publicationService.createPublication(request, newPublicationDTO);
         return "redirect:/";
     }
 
@@ -105,58 +99,49 @@ public class AdminController {
         return map;
     }
 
-    @RequestMapping(value = "/editcategory" , method = RequestMethod.GET)
-    public String editCategory(Model model){
-        model.addAttribute("categories", categoryService.list());
-        model.addAttribute("show", categoryService.list());
+    @RequestMapping(value = "/editcategory", method = RequestMethod.GET)
+    public String editCategory(Model model) {
+        model.addAttribute("groups", groupService.list());
         return "editcategory";
     }
 
     @RequestMapping(value = "/editcategory", method = RequestMethod.POST)
     @ResponseBody
-    public String createCategory(@Valid @RequestBody Category category) {
-        Category newCategory = new Category();
-        newCategory.setName(category.getName());
-        if (category.getId() == 0){
-        categoryService.createCategory(newCategory);
-        }
-        else {
-            newCategory.setParentCategory(categoryService.getCategoryById(category.getId()));
-            categoryService.createCategory(newCategory);
-        }
-        return "Category successful created";
+    public String createCategory(@Valid @RequestBody Group group) {
+        groupService.createCategory(group);
+        return "Group successful created";
     }
 
     @RequestMapping(value = "/editcategory/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteCategory(@PathVariable("id") Integer id) {
-        categoryService.deleteCategory(id);
-        return "Category successful deleted";
+        groupService.deleteCategory(id);
+        return "Group successful deleted";
     }
 
     @RequestMapping(value = "editlot/{id}", method = RequestMethod.GET)
-    public String editLot(Model model, @PathVariable("id") Integer id){
-        model.addAttribute("show", categoryService.list());
-        model.addAttribute("lot", productService.getProductById(id));
-        model.addAttribute("categories", categoryService.getCategories());
+    public String editLot(Model model, @PathVariable("id") Integer id) {
+        model.addAttribute("show", groupService.list());
+        model.addAttribute("lot", publicationService.getProductById(id));
+        model.addAttribute("categories", groupService.getCategories());
         return "editlot";
     }
 
     @RequestMapping(value = "editlot/{id}", method = RequestMethod.POST)
-    public String editLot(@Valid @ModelAttribute("lot") Products products, HttpServletRequest request) {
-        productService.updateproduct(products);
-        uploadImage(request,products);
-        return "redirect:/lot/{id}";
+    public String editLot(@Valid @ModelAttribute("lot") Publication products, HttpServletRequest request) {
+        publicationService.updateproduct(products);
+        uploadImage(request, products);
+        return "`";
     }
 
     @RequestMapping(value = "remove/{id}")
-    public String deleteProduct(@PathVariable("id") Integer id){
-        productService.deleteProduct(id);
+    public String deleteProduct(@PathVariable("id") Integer id) {
+        publicationService.deleteProduct(id);
         return "redirect:/";
     }
 
-    private void uploadImage(HttpServletRequest request, Products products){
-        MultipartFile productsImage = products.getImage();
+    private void uploadImage(HttpServletRequest request, Publication products) {
+        /*MultipartFile productsImage = products.getImage();
         String rootDirectory = request.getSession().getServletContext().getRealPath("/resources/img/");
         path = Paths.get(rootDirectory +
                 +products.getId() + ".png");
@@ -166,7 +151,7 @@ public class AdminController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
 }

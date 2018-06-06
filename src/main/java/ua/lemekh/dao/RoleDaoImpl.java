@@ -1,7 +1,9 @@
 package ua.lemekh.dao;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ua.lemekh.model.Role;
+import ua.lemekh.model.RoleEnum;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,4 +20,20 @@ public class RoleDaoImpl implements RoleDao{
         Role role = entityManager.find(Role.class, new Integer(id));
         return role;
     }
+
+    @Override
+    @Transactional
+    public void save(Role role) {
+        entityManager.persist(role);
+    }
+
+    @Override
+    @Transactional
+    public Role getRole(RoleEnum roleEnum) {
+        return entityManager.createQuery("SELECT r FROM Role r WHERE r.name =:role", Role.class)
+                .setParameter("role",roleEnum)
+                .getSingleResult();
+    }
+
+
 }
