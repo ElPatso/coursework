@@ -29,8 +29,9 @@
     <div class="body">
         <P>
         <h2>${product.title}</h2></P>
-        <p>${product.uploadedAt}</p>
-        <p>${product.uploadedBy}</p>
+        <label>Publicated at: </label><p>${product.uploadedAt}</p>
+        <label>Publicated by: </label><p>${product.uploadedBy}</p>
+        <label>Description: </label><p>${product.description}</p>
         <form method="get" action="${pageContext.request.contextPath}/lot/download/${product.id}/">
             <input type="submit" value="Download" class="button7"/>
         </form>

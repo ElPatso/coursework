@@ -5,6 +5,7 @@
 <form:form method="POST" modelAttribute="userForm" class="modal-content animate" action="${contextPath}/registerLecturer">
     <div class="form">
             <spring:bind path="password">
+                <form:input path="id" type="hidden"/>
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <form:input type="password" path="password" class="form-control"
                                 placeholder="Password"></form:input>

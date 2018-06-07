@@ -13,7 +13,11 @@ import java.util.List;
 public interface PublicationService {
     List<Publication> getProductList(Integer offset, Integer maxResult);
 
+    List<Publication> getProductListByCurrentUser(Integer offset, Integer maxResult);
+
     Long count();
+
+    Long countByCurrentUser();
 
     PublicationDTO getProductDTOById(int id);
 

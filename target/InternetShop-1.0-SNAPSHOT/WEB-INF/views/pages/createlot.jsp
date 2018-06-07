@@ -9,6 +9,8 @@
         <form:form method="post" enctype="multipart/form-data" modelAttribute="publication">
             <form:input path="publicationTitle" type="text" placeholder="Enter publication title"/>
 
+            <p><form:textarea rows="4" cols="57" path="description" type="text" placeholder="Enter description"/></p>
+
             <label>Public: </label><form:radiobutton path="privatePublication" value="false" onclick="hideGroup()"/>
             <label>Private: </label><form:radiobutton path="privatePublication" value="true" onclick="showGroup()"/>
 

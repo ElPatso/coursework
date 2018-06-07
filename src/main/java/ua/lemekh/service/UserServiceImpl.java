@@ -49,6 +49,14 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
     }
 
+    @Override
+    @Transactional
+    public void updateUserPassword(User user){
+        User existingUser = getUserById(user.getId());
+        existingUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        updateUser(existingUser);
+    }
+
     @Transactional
     public User findByUsername(String username) {
         return this.userDao.findByUsername(username);

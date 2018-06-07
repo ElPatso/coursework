@@ -11,10 +11,7 @@ import ua.lemekh.dao.RateRepository;
 import ua.lemekh.dto.NewPublicationDTO;
 import ua.lemekh.dto.PublicationDTO;
 import ua.lemekh.mailEvent.MailSernder;
-import ua.lemekh.model.Group;
-import ua.lemekh.model.Publication;
-import ua.lemekh.model.Rate;
-import ua.lemekh.model.User;
+import ua.lemekh.model.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -53,10 +50,29 @@ public class PublicationServiceImpl implements PublicationService {
         return publicationDao.getPublications(offset, maxResult, userService.getCurrentUser());
     }
 
+    @Override
+    @Transactional
+    public List<Publication> getProductListByCurrentUser(Integer offset, Integer maxResult) {
+        return publicationDao.getPublicationsByCurrentUser(offset, maxResult, userService.getCurrentUser());
+    }
+
     @Transactional
     @Override
     public Long count() {
         return publicationDao.count(userService.getCurrentUser());
+    }
+
+    @Override
+    @Transactional
+    public Long countByCurrentUser() {
+        User currentUser = userService.getCurrentUser();
+        if (currentUser.getRoles().stream().anyMatch(role -> role.getName().equals(RoleEnum.ROLE_LECTURER))) {
+            return publicationDao.countByLecturer(currentUser);
+        }
+        if (currentUser.getRoles().stream().anyMatch(role -> role.getName().equals(RoleEnum.ROLE_STUDENT))) {
+            return publicationDao.countByStudent(currentUser.getGroup());
+        }
+        return null;
     }
 
     @Transactional
@@ -91,7 +107,7 @@ public class PublicationServiceImpl implements PublicationService {
         publication.setLogoUrl(uploadImage(logoUrl, newPublicationDTO.getLogo(), newPublicationDTO.getPublicationTitle()));
         publication.setFileUrl(uploadFile(fileUrl, newPublicationDTO.getFile()));
 
-        if (!CollectionUtils.isEmpty(groups)){
+        if (!CollectionUtils.isEmpty(groups)) {
             userService.getUsersByGroup(groups)
                     .forEach(mailSernder::sendToUsers);
         }

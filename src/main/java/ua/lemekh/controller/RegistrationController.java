@@ -88,6 +88,11 @@ public class RegistrationController {
         model.addAttribute("userForm", userService.getUserById(id));
         return "registerlecturer";
     }
+    @RequestMapping(value = "/registerLecturer", method = RequestMethod.POST)
+    public String registrationLectur(@ModelAttribute("userForm") final User user) {
+        userService.updateUserPassword(user);
+        return "redirect:/";
+    }
 
     @RequestMapping(value = "/regitrationConfirm", method = RequestMethod.GET)
     public String confirmRegistration

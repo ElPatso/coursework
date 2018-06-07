@@ -3,7 +3,9 @@ package ua.lemekh.dao;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
+import ua.lemekh.model.Group;
 import ua.lemekh.model.Publication;
+import ua.lemekh.model.RoleEnum;
 import ua.lemekh.model.User;
 
 
@@ -38,6 +40,26 @@ public class PublicationDaoImpl implements PublicationDao {
     }
 
     @Override
+    public List<Publication> getPublicationsByCurrentUser(Integer offset, Integer maxResult, User user) {
+        Query query = null;
+        if (user.getRoles().stream().anyMatch(role -> role.getName().equals(RoleEnum.ROLE_LECTURER))) {
+            query = entityManager.createQuery("SELECT p FROM Publication p WHERE p.publicatedBy =:user", Publication.class)
+                    .setParameter("user", user)
+                    .setFirstResult(offset != null ? offset : 0)
+                    .setMaxResults(maxResult != null ? maxResult : 12);
+
+        }
+        if (user.getRoles().stream().anyMatch(role -> role.getName().equals(RoleEnum.ROLE_STUDENT))) {
+            query = entityManager.createQuery("SELECT p FROM Publication p INNER JOIN p.groups g " +
+                    "WHERE g =:group", Publication.class)
+                    .setParameter("group", user.getGroup())
+                    .setFirstResult(offset != null ? offset : 0)
+                    .setMaxResults(maxResult != null ? maxResult : 12);
+        }
+        return query.getResultList();
+    }
+
+    @Override
     public Long count(User user) {
         Query query = entityManager.createQuery(getPublicationsQuery(user, true).toString());
         if (Objects.nonNull(user)) {
@@ -45,6 +67,21 @@ public class PublicationDaoImpl implements PublicationDao {
                     .setParameter("group", user.getGroup());
         }
         return (Long) query.getSingleResult();
+    }
+
+    @Override
+    public Long countByLecturer(User user) {
+        return entityManager.createQuery("SELECT COUNT(p) FROM Publication p WHERE p.publicatedBy =:user", Long.class)
+                .setParameter("user", user)
+                .getSingleResult();
+    }
+
+    @Override
+    public Long countByStudent(Group group) {
+        return entityManager.createQuery("SELECT COUNT(p) FROM Publication p INNER JOIN p.groups g " +
+                "WHERE g =:group", Long.class)
+                .setParameter("group", group)
+                .getSingleResult();
     }
 
     @Override
@@ -63,7 +100,9 @@ public class PublicationDaoImpl implements PublicationDao {
 
     @Override
     public List<Publication> getPublicationsBySearch(String search) {
-        Query query = entityManager.createQuery("select p from Products  p where p.name like ?1").setParameter(1, search + "%");
+        Query query =
+                entityManager.createQuery("SELECT p FROM Publication p WHERE p.name LIKE ?1")
+                        .setParameter(1, search + "%");
         List<Publication> products = (List<Publication>) query.getResultList();
         return products;
     }

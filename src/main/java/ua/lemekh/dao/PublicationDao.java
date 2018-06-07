@@ -1,5 +1,6 @@
 package ua.lemekh.dao;
 
+import ua.lemekh.model.Group;
 import ua.lemekh.model.Publication;
 import ua.lemekh.model.User;
 
@@ -11,7 +12,13 @@ import java.util.List;
 public interface PublicationDao {
     List<Publication> getPublications(Integer offset, Integer maxResult, User user);
 
+    List<Publication> getPublicationsByCurrentUser(Integer offset, Integer maxResult, User user);
+
     Long count(User user);
+
+    Long countByLecturer(User user);
+
+    Long countByStudent(Group group);
 
     Publication getPublicationById(int id);
 

@@ -11,6 +11,8 @@ import java.util.List;
 public interface UserService {
     void save(User user);
 
+    void updateUserPassword(User user);
+
     User findByUsername(String username);
 
     User findByEmail(String email);

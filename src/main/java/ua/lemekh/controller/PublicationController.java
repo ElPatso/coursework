@@ -94,31 +94,24 @@ public class PublicationController {
         comments.setProducts(publicationService.getProductById(id));
         return commentService.addComment(comments);
     }
-/*
-    @PreAuthorize("hasRole('ROLE_USER')")
+
+    @PreAuthorize("hasAnyRole('ROLE_LECTURER', 'ROLE_STUDENT')")
     @RequestMapping(value = "cart", method = RequestMethod.GET)
-    public String cart(Model model){
-        model.addAttribute("show", groupService.list());
+    public String cart(Model model, Integer offset, Integer maxResults) {
+        model.addAttribute("products", publicationService.getProductListByCurrentUser(offset, maxResults)
+                .stream().map(PublicationDTO::toDto).collect(Collectors.toList()));
+        model.addAttribute("count", publicationService.countByCurrentUser());
+        model.addAttribute("offset", offset);
         return "cart";
     }
-*/
 
 
     @RequestMapping(value = "search", method = RequestMethod.POST)
     public String searchPost(Model model, @RequestParam("searchRow") String string) {
         System.out.println("search row + " + string);
-        model.addAttribute("show", groupService.list());
-        model.addAttribute("products", publicationService.getProductListBySearch(string));
+        model.addAttribute("products", publicationService.getProductListBySearch(string)
+                .stream().map(PublicationDTO::toDto).collect(Collectors.toList()));
         return "search";
     }
 
-
-    /*@RequestMapping(value = "category", method = RequestMethod.GET)
-    public String categoryTest(@RequestParam("name") String name, Model model, Integer offset, Integer maxResults) {
-        model.addAttribute("products", publicationService.getPublicationsByGroup(name,offset, maxResults));
-        model.addAttribute("count", publicationService.CountForCategory(name));
-        model.addAttribute("offset", offset);
-        model.addAttribute("show", groupService.list());
-        return "category";
-    }*/
 }
